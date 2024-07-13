@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GradeMananger
 {
-    public class Program
+    public class GradeManager
         // Global Scope
         
     {
