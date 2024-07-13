@@ -140,18 +140,21 @@ namespace Week1
             
             int count = 10;
             
-            for (int i = 0; i < count; i++) ;
+            for (int i = 0; i < count; i++) // Switch , for, any conditonals and loops have to end in braces and is there own code block.
+            {
+                //First statement is i = 0; Initializes a counter i and starts at 0
+                // Second statement : i < count; Loop while i is less than the count, loop will stop when i = count
+                // Third statement: Increment (increase 1, 2, 3, 4, 5) i by 1 for each execution of the loop.
+                // By structuring the for statement like this, starting at 0, and increasing by 1 until i is less than 10.
+                // The next loop , i will equal 10, which stops the loop, so the last execution of the loop, i is 9.
+                // Since we are starting from 0, and going to 9,this is exactly 10 executions of the loop.
 
-            //First statement is i = 0; Initializes a counter i and starts at 0
-            // Second statement : i < count; Loop while i is less than the count, loop will stop when i = count
-            // Third statement: Increment (increase 1, 2, 3, 4, 5) i by 1 for each execution of the loop.
-            // By structuring the for statement like this, starting at 0, and increasing by 1 until i is less than 10.
-            // The next loop , i will equal 10, which stops the loop, so the last execution of the loop, i is 9.
-            // Since we are starting from 0, and going to 9,this is exactly 10 executions of the loop.
+                //Do something with each execution of the loop
+                
+                Console.WriteLine($"Loop count i {i},but this is execution number {i + 1}.");
+            }
 
-            //Do something with each execution of the loop
-            int i= 0; 
-             Console.WriteLine($"Loop count i {i},but this is execution number {i + 1}.");
+            
         }
         public static void ForEachLoop()
         { 

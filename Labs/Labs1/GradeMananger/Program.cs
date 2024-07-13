@@ -46,7 +46,7 @@ namespace GradeMananger
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine();
+                    
                     //Print student grade method for 1st choice.
                     break;  // After each case you have to end it with a break statement,otherwise all cases will execute.
                 case 2:
