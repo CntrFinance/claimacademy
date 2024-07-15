@@ -10,8 +10,10 @@ namespace GradeMananger
     {
         private string _firstName { get; set; } //Private Fields should start with an underscore, the underscore to identify private or public data for orginization
         private string _lastName { get; set; }
-
+        
+        private double _average { get; set; }
         //Constructor: See Constructor Section in week 1 code for more info
+        private List<int> _grades { get; set; } 
 
         public Student()
         {
@@ -46,11 +48,37 @@ namespace GradeMananger
         {
             return _lastName;   
         }
+        public void AddGrade(int grades)
+        {
+            _grades.Add(grades);
+        }
 
+        public double GetAverage()
+        {
+            double average = 0; // Defalut average to 0
 
+            double totalPoints = 0;
+            // compute average
+            foreach (int grade in _grades) 
+            {
+                totalPoints += grade;
+            }
+             int gradecount = _grades.Count;
 
+            average = totalPoints / gradecount; 
+            return average; 
+            {
+                
+                
+                    
+                   
+                       
+                
+            }
 
+        }
 
+       
 
 
 

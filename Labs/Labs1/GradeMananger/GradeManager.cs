@@ -28,6 +28,14 @@ namespace GradeMananger
 
             Console.WriteLine(string.Empty); //Create Blank Line To the Start Menu
             Console.WriteLine('\n');//\n is a special character in programming known as a newline character. When used in a string, it tells the computer to move the cursor to the next line. Essentially, it starts a new line of text.
+            
+            //Create some Student 
+            Student student1 = new Student("Jibreel", "Muhammad");
+            Student student2 = new Student("Tavish", "Misra");
+            Student student3 = new Student("Hassan", "Fofana");
+            Student student4 = new Student("Jarvis", "Potter");
+            Student student5 = new Student("Greg", "Leeker");
+
             while (!exit) //! = not false
             {
                 menu();
