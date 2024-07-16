@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -28,21 +29,25 @@ namespace GradeMananger
 
             Console.WriteLine(string.Empty); //Create Blank Line To the Start Menu
             Console.WriteLine('\n');//\n is a special character in programming known as a newline character. When used in a string, it tells the computer to move the cursor to the next line. Essentially, it starts a new line of text.
-            
+
             //Create some Student 
-            Student student1 = new Student("Jibreel", "Muhammad");
-            Student student2 = new Student("Tavish", "Misra");
-            Student student3 = new Student("Hassan", "Fofana");
-            Student student4 = new Student("Jarvis", "Potter");
-            Student student5 = new Student("Greg", "Leeker");
+            var students = new List<Student>()//create a list of students and instatiate (create) the students from the start.
+            {
+                new Student("Jibreel", "Muhammad"), //Student 0 (Student number is indexer (Position) number in list)
+                new Student("Hassan", "Fofana"), //Student 1
+                new Student("Tavish", "Misra"), //Student 2
+                new Student("Jarvis", "Potter"), //Student 3
+                new Student("Greg", "Leeker") // Student 4
+
+            };//create a list of students and instatiate (create) the students from the start. We call the new keyword on each studnet object in the list because wach student object must be created.
 
             while (!exit) //! = not false
             {
-                menu();
+                menu(students);
             }
         }
 
-        private static void menu()
+        private static void menu(List<Student>students)
         {
             Console.WriteLine("1. Print all student grade.");
             Console.WriteLine("2. Add studemt grade");
@@ -63,10 +68,10 @@ namespace GradeMananger
             {
                 case 1:
 
-                    PrintStudentGrade(); // method for 1st choice.
+                    PrintStudentGrade(students); // method for 1st choice.
                     break;  // After each case you have to end it with a break statement,otherwise all cases will execute.
                 case 2:
-                    AddStudentGrade();
+                    AddStudentGrade(students);
                     break;
                 case 3:
                     CalculateClassAverage();
@@ -92,14 +97,54 @@ namespace GradeMananger
             }
             
         }
-        private static void PrintStudentGrade()
+        private static void PrintStudentGrade(List<Student> students)
         {
-            Console.WriteLine("PrintStudentsGrades method is called");
+            string header = "Student Name           Grade";
+            Console.WriteLine(header);
+            Console.WriteLine(new String('-', header.Length)); // Create a new string of dashes that is the length of the header
+            
+            // Check if there are existing students, if so, print their grades. If not, say there are no students
+
+            if (students != null && students.Count > 0) // || means "or". && means "and"
+                //Student grade list exist in memory and contains grade 
+            {
+                // Print student grades
+                foreach (var student in students)
+                {
+                    var studentFirstName = student.getFirstName();  // Get first name
+                    var studentLastName = student.getLastName();     //Get last name
+                    Console.WriteLine($"{studentlistnumber}")
+                    var studentGradeList = student.GetGrades();     //Get student grades
+
+                    //Print the grades if they exist if not, say no to grades 
+                    Console.WriteLine(string.Empty); // Line break
+
+                    if (studentGradeList != null && studentGradeList.Count > 0)
+                    {
+                        foreach (var grade in studentGradeList)
+                        {
+                            Console.WriteLine($"{studentFirstName} {studentLastName}        {grade}");
+                        }
+                    }
+
+
+                }
+            }
+
+                    else
+                    {
+                    Console.WriteLine("There are no students in the sysytem");
+            }
+            
+
         }
-        private static void AddStudentGrade()
+        private static void AddStudentGrade(List<Student>students)
+             // check for student to add grades for 
+
+            if (students !=null students > 0) 
         {
-            Console.WriteLine("AddStudentsGrades method is called");
-        }
+           
+         
 
         private static void CalculateClassAverage() 
         {
@@ -121,7 +166,7 @@ namespace GradeMananger
             Console.WriteLine("DeleteStudent method is called");
         }
 
-
+       
         private static void StudentGrade()
         {
             Console.WriteLine("StudentsGrade method is called");

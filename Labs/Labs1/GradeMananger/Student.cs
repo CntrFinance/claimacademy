@@ -37,7 +37,10 @@ namespace GradeMananger
         { 
             _firstName = firstName;
         }
-
+        public List<int> GetGrades()
+        {
+            return _grades;
+        }
         public string getFirstName() // Return private _firstname value via public accessor method.return type "string" needed as we are returning the string value in _firstName.
         {                            // No parameter here because we are insteas returning dataa from the method rather than passing data into the method.
             return _firstName;       //return statement sends this data out of the method when this method is called. typically you can can assign to a string variable method called like you would a value.
