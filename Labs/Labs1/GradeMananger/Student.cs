@@ -13,7 +13,7 @@ namespace GradeMananger
         
         private double _average { get; set; }
         //Constructor: See Constructor Section in week 1 code for more info
-        private List<int> _grades { get; set; } 
+        private List<int> _grades = new List<int>();
 
         public Student()
         {
