@@ -4,92 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GradeMananger
+namespace GradeManager
 {
     public class Student
     {
-        private string _firstName { get; set; } //Private Fields should start with an underscore, the underscore to identify private or public data for orginization
-        private string _lastName { get; set; }
-        
-        private double _average { get; set; }
-        //Constructor: See Constructor Section in week 1 code for more info
-        private List<int> _grades = new List<int>();
+        public string FirstName { get; set; } //Private field names should start with underscore (_)
+        public string LastName { get; set; }
+
+        public double Average { get; set; } = 0; // Default to 0
+        public List<int> Grades = new List<int>(); //For lists, see: https://www.tutorialsteacher.com/csharp/csharp-list or https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-8.0
+
+        // Constructors: See Constructor section in Week1 code for more info
 
         public Student()
         {
-
+            // Default constructor - No arguments/parameters and no code
         }
-
-
 
         public Student(string firstName, string lastName)
         {
-            //Parameterized constructor, accepts arguments as parameters (in this case 2 string )
+            //Parameterized constructor, accepts arguments as parameters (in this case, 2 strings are being accepted as arguments)
 
-            _firstName = firstName;
-            _lastName = lastName;   
+            FirstName = firstName; //Set the private field via the parameter passed into public constructor
+            LastName = lastName;
         }
 
-        //Getters and setters
-        //Setter methods can be void as no return value is needed.
-        //we will not use the static 
-        public void setFirstName(string firstName) //Parameter for set, because we are passing this dat into the method.
-        { 
-            _firstName = firstName;
-        }
-        public List<int> GetGrades()
+        // Getters and setters
+        // Setter methods can be void as no return value is needed.
+        // We will not use the static keyword on these methods as we are not using these methods inside of the Student class, but rather outside of the class when a Student object is created with the new keyword.
+        // See Week1 powerpoint and code on Classes
+
+
+        public void ComputeAverage()
         {
-            return _grades;
-        }
-        public string getFirstName() // Return private _firstname value via public accessor method.return type "string" needed as we are returning the string value in _firstName.
-        {                            // No parameter here because we are insteas returning dataa from the method rather than passing data into the method.
-            return _firstName;       //return statement sends this data out of the method when this method is called. typically you can can assign to a string variable method called like you would a value.
-                                    //
-        }
+            double totalPoints = 0; // To keep track of total grade points to compute the average
 
-        public string getLastName() 
-        {
-            return _lastName;   
-        }
-        public void AddGrade(int grades)
-        {
-            _grades.Add(grades);
-        }
-
-        public double GetAverage()
-        {
-            double average = 0; // Defalut average to 0
-
-            double totalPoints = 0;
-            // compute average
-            foreach (int grade in _grades) 
+            foreach (int grade in Grades) //See ForEach in Week1 code
             {
-                totalPoints += grade;
-            }
-             int gradecount = _grades.Count;
-
-            average = totalPoints / gradecount; 
-            return average; 
-            {
-                
-                
-                    
-                   
-                       
-                
+                totalPoints += grade; // Add up all the student points for the student. This is the same as totalPoints = totalPoints + grade;
             }
 
+            // Compute the average
+            int gradeCount = Grades.Count; // Gets the number of grades in the Grades List, assign it to an int variable called "gradeCount"
+
+            Average = totalPoints / gradeCount; // Calculate the average by dividing total points by the number of grades.
+
         }
-
-       
-
-
-
-
-
-
 
     }
+
+
 
 
 }
