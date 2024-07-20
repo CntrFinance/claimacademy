@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GradeMananger;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -180,20 +181,78 @@ namespace GradeManager
 
         private static void PrintHighestGrade()
         {
-            Console.WriteLine("PrintHighestGrade method is called.");
+            int maxGrade = 0; // 
+            int count = 0; // Master grade count. If 0 we are starting from the beginning
+            foreach (var student in students)
+            {
+                foreach (var grade in student.grades)
+                {
+                    if(count ==0|| grade > maxGrade) // if we are starting OR the next grade is greater than maxGrade, then assign the new highest grade to maxGrade
+                        //== checks for equality, = assigns a value. Checks if we are startignfrom the begginning 
+
+                    {
+                        maxGrade = grade;// Assign the first grade to maxGrade
+                    }
+
+                    count++; //increment count outside of if statement because we want to increment regardless of the case
+                }
+                
+            }
+            Console.WriteLine($"\nThe highest grade is {maxGrade}\n");
         }
 
         private static void PrintLowestGrade()
         {
-            Console.WriteLine("PrintLowestGrade method is called.");
-        }
+            int minGrade = 0; // 
+            int count = 0; // Master grade count. If 0 we are starting from the beginning
+            foreach (var student in students)
+            {
+                foreach (var grade in student.grades)
+                {
+                    if (count == 0 || grade < minGrade) // if we are starting OR the next grade is less than minGrade, then assign the new lowest grade to minGrade
+                                                        //== checks for equality, = assigns a value. Checks if we are startignfrom the begginning 
 
-        private static void DeleteStudent()
+                    {
+                        minGrade = grade;// Assign the first grade to minGrade
+                    }
+
+                    count++; //increment count outside of if statement because we want to increment regardless of the case
+                }
+
+            }
+            Console.WriteLine($"\nThe lowest grade is {minGrade}\n");
+        }
+    }
+
+    private static void DeleteStudent()
+    {
+        Console.WriteLine("Which student do you want to delete?");
+        int studentNumber = 1;
+
+        foreach (var student in students)
         {
-            Console.WriteLine("DeleteStudent method is called.");
-        }
+            Console.WriteLine($"{studentNumber}.{student.FirstName}.{student.LastName}");
+            studentNumber++; // Increase the Student number for each name printed 
 
-        private static void EditStudentGrade()
+        }
+        string choiceInput; //Storing input for the choice 
+        choiceInput = Console.ReadLine(); //Take choice inout from the keyboard
+        int choice = int.Parse(choiceInput); //Convert string choiceInput into int
+
+        choice--; //Decrease choice by 1 to map with List Number starting from 0
+
+        var studentChoice = studnets[choice]; //Store the chosen student in a Student variable.
+        var studentName = $"{studentChoice.FirstName}{studentChoice.LastName}";
+        //Store studemt first and last name variable for confirmation message when deleted. Once student is deleted, we can no longer call access that students name.
+
+        // The point of this method is to delete the student.
+        // Removes uses the integerepresenting the position in the list, and removes the student at that position.
+        students.RemoveAt(choice);
+
+        Console.WriteLine($"Student {studentName} Deleted.");
+    }
+
+    private static void EditStudentGrade()
         {
             Console.WriteLine("EditStudentGrade method is called.");
         }
