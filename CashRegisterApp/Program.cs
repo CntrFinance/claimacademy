@@ -47,8 +47,8 @@ namespace CashRegisterApp
 
             while (true) {
 
-                //Disp
-                Console.WriteLine("\nCurrent Balance: $" + withdrawBalance);
+                //Display 
+                Console.WriteLine($"\nCurrent Balance:  {withdrawBalance}");
                 Console.Write("Enter the sale amount:$ ");
                 decimal saleAmount = decimal.Parse(Console.ReadLine());
 
@@ -93,7 +93,8 @@ namespace CashRegisterApp
                 //So we have to create a list for this example because an array only uses preset variables.
                 //Look at tuple option for the different variables in the transaction.
                 
-                //Console.Write("Enter in cash Denominations.($1, $5, $10, $20, $50, $100)."); I want to import a list for the that calculates the Cash denominations 
+                //Console.Write("Enter in cash Denominations.($1, $5, $10, $20, $50, $100)."); 
+                //I want to import a list for the that calculates the Cash denominations 
 
                 // if (customerdenomination <= 100) 
                 
