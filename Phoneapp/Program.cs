@@ -102,7 +102,7 @@ namespace PhoneBook_Console_Project
 
         static void SearchContact()
         {
-            Console.Write("Find a contactList by name:");
+            Console.WriteLine("Find a contactList by name:");
         }
         static void DeleteContact()
         {
@@ -162,10 +162,10 @@ namespace PhoneBook_Console_Project
         }
         static void SaveContact()
         {
-            //  string contactsJsonFile = JsonSerializer.Serialize(contactList);
-            //   var path = "C:\\Users\\Owner\\source\\claimacademy\\PhoneBook Console Project";
-            //   File.WriteAllText(path, contactJson);
-            //   Console.WriteLine($"\nStudents saved to {path}.");
+             string contactsJsonFile = JsonSerializer.Serialize(contactList);
+             var path = "C:\\Users\\Owner\\source\\claimacademy\\PhoneBook Console Project";
+             File.WriteAllText(path, contactJson);
+             Console.WriteLine($"\nStudents saved to {path}.");
 
 
         }
@@ -175,6 +175,7 @@ namespace PhoneBook_Console_Project
             Console.WriteLine($"What is the name of the contactList you want to add? Please type first and last name.{Environment.NewLine}");
             Console.WriteLine($"Enter First Name:{Environment.NewLine}");//Console.WriteLine breaks to the next line, Console.Write Puts all strings on the same line.
             string firstName = Console.ReadLine();
+            
 
             Console.WriteLine($"Enter Contacts Last Name:{Environment.NewLine}");
             string lastName = Console.ReadLine();
@@ -182,6 +183,10 @@ namespace PhoneBook_Console_Project
             Console.WriteLine($"Enter Phone Number:{Environment.NewLine}");
             long phoneNum = long.Parse(Console.ReadLine());
             string phoneNumber = string.Concat("+", phoneNum);
+            
+            Console.WriteLine($"Contact {firstName.ToUpper().Trim()} {lastName.ToUpper().Trim()} added successfully. The phone is {phoneNumber}");
+
+            PrintAllContact();
 
             contactList.Add
                 (
@@ -196,13 +201,12 @@ namespace PhoneBook_Console_Project
                 
                 );
 
-            Console.WriteLine($"Contact {firstName} {lastName} added successfully.");
-            PrintAllContact();
+            
 
             //int - up to 10 digits -  -2,147,483,648 to 2,147,483,6471. 
             //long - can accommodate 19 digits -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
         }
-        static void Exit()
+        static void Exit() //This work 100%
         {
             Console.WriteLine("Exiting PhoneBook...");
             exit = true;
