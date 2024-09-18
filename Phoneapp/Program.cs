@@ -8,7 +8,8 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Newtonsoft.Json; //This is the package for Json.
+using Newtonsoft.Json;
+using PhoneBook_Console_Project.Exceptions; //This is the package for Json.
 
 namespace PhoneBook_Console_Project
 {
@@ -34,7 +35,7 @@ namespace PhoneBook_Console_Project
 
                 Console.WriteLine("PhoneBook");
                 Console.WriteLine($"-------------{Environment.NewLine}");
-                Console.WriteLine("View phonebook directory: Select Option A. Add contactList: Select Option B (A/B)");
+                Console.WriteLine("View phonebook directory: Select Option A. Add contact: Select Option B (A/B)");
                 string option = Console.ReadLine();
 
                 if (option.ToUpper().Trim() == "A")
@@ -102,51 +103,105 @@ namespace PhoneBook_Console_Project
 
         static void SearchContact()
         {
-            Console.WriteLine("Find a contactList by name:");
+            if (contactList.Count == 0)
+            {
+
+                Console.WriteLine("no contacts in phonebook memory");
+                return;
+            }
+
+            Console.WriteLine("Enter first name:");
+            string firstName = Console.ReadLine().ToUpper().Trim();
+
+            Console.WriteLine("Enter last name:");
+            string lastName = Console.ReadLine().ToUpper().Trim(); // Make input case-insensitive(Upper) and trim whitespaces
+
+            bool contactFound = false;
+
+            foreach (var contact in contactList)
+            {
+                if (contact.FirstName.ToUpper() == firstName && contact.LastName.ToUpper() == lastName)
+                {
+                    Console.WriteLine($"Contact found: {contact.FirstName} {contact.LastName} - Phone: {contact.PhoneNumber}");
+                    contactFound = true;
+                    break; // Exit loop once contact is found
+                }
+            }
+
+            if (!contactFound)
+            {
+                Console.WriteLine("Contact not found.");
+            }
         }
+
+
         static void DeleteContact()
         {
+
             try
             {
-                PrintAllContact();
-                Console.WriteLine("What contactList would you like to delete? YES / NO");
-                string option1 = Console.ReadLine();
-
-                if (option1.ToUpper().Trim() == "YES")
+                // Check if there are contacts to delete
+                if (contactList.Count == 0)
                 {
-                    Console.WriteLine("Are you sure you want to delete this contactList. (Yes/No)");
-                    string option2 = Console.ReadLine();
-
-                    if (option2.ToUpper().Trim() == "YES")
-                    {
-                        Console.WriteLine("Contact Deleted");
-                    }
-
-                    if (option1.ToUpper().Trim() == "NO")
-                    {
-                        PhoneBookDirectory();
-
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Contact Not Deleted");
-                    }
-
+                    Console.WriteLine("No contacts in phonebook to delete.");
+                    return;
                 }
 
+                // Display all contacts with their index
+                PrintAllContact();
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error.{ex.Message}");
+                Console.WriteLine("Enter the number of the contact you want to delete (starting from 0):");
+                string input = Console.ReadLine();
 
+                // Validate input and convert to integer
+                int indexToDelete;
+                if (!int.TryParse(input, out indexToDelete))
+                {
+                    throw new FormatException("Invalid choice, must be a number.");
+                }
+
+                // Check if index is in range
+                if (indexToDelete < 0 || indexToDelete >= contactList.Count)
+                {
+                    throw new IndexOutOfRangeException("Choice out of range.");
+                }
+
+                // Confirm deletion
+                Console.WriteLine($"Are you sure you want to delete {contactList[indexToDelete].FirstName} {contactList[indexToDelete].LastName}? (Yes/No)");
+                string confirmation = Console.ReadLine();
+
+                if (confirmation.ToUpper().Trim() == "YES")
+                {
+                    // Delete the contact
+                    string deletedContact = $"{contactList[indexToDelete].FirstName} {contactList[indexToDelete].LastName}";
+                    contactList.RemoveAt(indexToDelete); // Remove contact from list
+                    Console.WriteLine($"{deletedContact} has been deleted.");
+                }
+                else
+                {
+                    Console.WriteLine("Contact not deleted.");
+                }
             }
+                catch (FormatException)
+                {
+                Console.WriteLine("Invalid choice, try again.");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                Console.WriteLine("Choice out of range, try again.");
+                }
+            
+                catch (Exception Ex1)
+                {
+                Console.WriteLine($"Error.{Ex1.Message}");
+
+                }
+        
             
         }
         static void PrintAllContact()
         {
-            if (contactList != null && contactList.Any());
+            if (contactList != null && contactList.Any())
             {
 
 
@@ -162,10 +217,21 @@ namespace PhoneBook_Console_Project
         }
         static void SaveContact()
         {
-             string contactsJsonFile = JsonSerializer.Serialize(contactList);
-             var path = "C:\\Users\\Owner\\source\\claimacademy\\PhoneBook Console Project";
-             File.WriteAllText(path, contactJson);
-             Console.WriteLine($"\nStudents saved to {path}.");
+            // Define folder path and file name to save transactions JSON
+            string folderPath = "C:\\Users\\Owner\\Documents"; // make sure to add 2 \\ when copying file path from the file explorer.
+            string fileName = "SavedContacts.json";
+
+            // Build a full file path for the transactions
+            string path = Path.Combine(folderPath, fileName);
+
+            // Make JSON out of the transactions
+            string json = JsonConvert.SerializeObject(Contact);
+
+            // Save the JSON to a file
+            File.WriteAllText(path, json);
+
+            // Notify user of successful save and save location
+            Console.WriteLine($"\nStudents saved to {path}.");
 
 
         }
@@ -208,7 +274,8 @@ namespace PhoneBook_Console_Project
         }
         static void Exit() //This work 100%
         {
-            Console.WriteLine("Exiting PhoneBook...");
+            Console.WriteLine("Good-Bye! Press any key to exit.");
+            Console.ReadKey(); 
             exit = true;
         }
 
