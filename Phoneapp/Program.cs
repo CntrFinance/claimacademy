@@ -106,26 +106,43 @@ namespace PhoneBook_Console_Project
         }
         static void DeleteContact()
         {
-            PrintAllContact();
-            Console.WriteLine("What contactList would you like to delete?");
-
-            //contactList.Remove();
-            Console.Write(" ");
-
-           // foreach (var contactList in Contact)
+            try
             {
+                PrintAllContact();
+                Console.WriteLine("What contactList would you like to delete? YES / NO");
+                string option1 = Console.ReadLine();
+
+                if (option1.ToUpper().Trim() == "YES")
+                {
+                    Console.WriteLine("Are you sure you want to delete this contactList. (Yes/No)");
+                    string option2 = Console.ReadLine();
+
+                    if (option2.ToUpper().Trim() == "YES")
+                    {
+                        Console.WriteLine("Contact Deleted");
+                    }
+
+                    if (option1.ToUpper().Trim() == "NO")
+                    {
+                        PhoneBookDirectory();
+
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Contact Not Deleted");
+                    }
+
+                }
+
 
             }
-
-            Console.WriteLine("Are you sure you want to delete this contactList. (Yes/No)");
-            string option = Console.ReadLine();
-
-            if (option.ToUpper().Trim() == "Yes")
+            catch (Exception ex)
             {
-                Console.WriteLine("Contact Deleted");
-            }
+                Console.WriteLine($"Error.{ex.Message}");
 
-                
+            }
+            
         }
         static void PrintAllContact()
         {
@@ -134,9 +151,9 @@ namespace PhoneBook_Console_Project
 
 
                foreach (Contact contact in contactList)
-                {
+               {
                     Console.WriteLine($"Name: {contact.FirstName} {contact.LastName}, Phone: {contact.PhoneNumber}");
-                }
+               }
 
 
             }
