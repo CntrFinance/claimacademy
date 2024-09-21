@@ -49,9 +49,7 @@
     <Compile Include="Contact.cs" />
     <Compile Include="Exceptions\Ex1.cs" />
     <Compile Include="Exceptions\InvalidPhoneNumberException.cs" />
-    <Compile Include="..\..\repos\claimacademy\Phoneapp\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

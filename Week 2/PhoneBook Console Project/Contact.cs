@@ -25,6 +25,7 @@ namespace PhoneBook_Console_Project
 
         // Country Code
         //public int CountryCode { get; set; }
+        public string CountryCode { get; set; } 
     }
 
    

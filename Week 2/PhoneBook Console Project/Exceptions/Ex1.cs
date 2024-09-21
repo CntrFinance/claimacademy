@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBook_Console_Project.Exceptions
 {
-    internal class Ex1 : Exception
+    public class Ex1 : Exception
     {
 
     
