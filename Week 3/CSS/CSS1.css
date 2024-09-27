@@ -29,13 +29,15 @@ body {
     margin-right: auto;
   }
 
-        .center {
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid;
+.center {
+            margin-left: auto; margin-right: auto; border: 1px solid;
  
-        }
+}
   
+        ul, ol, li {
+justify-content: center;
+list-style-position: inside;
+        }
 
   /*To display the table border it needs to be - solid color and have the key word border-collapse: collapse; */
 
