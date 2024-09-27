@@ -23,8 +23,8 @@ namespace PhoneBook_Console_Project
 
         static void Main(string[] args)
         {
-            
-            
+
+
 
             try
             {
@@ -40,17 +40,8 @@ namespace PhoneBook_Console_Project
 
                 Console.WriteLine($"{Environment.NewLine}");
 
-                Console.WriteLine($"To view phonebook directory: Select Option A.{Environment.NewLine}");
-                string option = Console.ReadLine();
 
-                
-
-                if (option.ToUpper().Trim() == "A")
-                {
-                    PhoneBookDirectory();
-                }
-
-                if ( option1.ToUpper().Trim() == "Yes")
+                if (option1.ToUpper().Trim() == "Yes")
                 {
                     AddNewContact();
                 };
@@ -60,7 +51,7 @@ namespace PhoneBook_Console_Project
                     PhoneBookDirectory();
                 };
 
-
+               n
             }
             catch (Exception ex)
             {
@@ -236,8 +227,6 @@ namespace PhoneBook_Console_Project
                 );
 
             Console.WriteLine($"Contact {firstName} {lastName} {phoneNumber} added successfully.");
-
-            Console.ReadLine();
 
             PrintAllContact();
 

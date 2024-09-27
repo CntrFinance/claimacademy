@@ -1,0 +1,22 @@
+body {
+    background-color: powderblue;
+  }
+  h1 {
+    color: blue;
+    font-size: 40px;
+  }
+  h2 {
+    color:blueviolet;
+    font-size: 40px;
+  }
+  h3 {
+    color: goldenrod;
+    font-size: 40px;
+  }
+  p {
+    color: red;
+    font-size: 40px;
+  }
+
+  /*To display the table border it needs to be - solid color and have the key word border-collapse: collapse; */
+
