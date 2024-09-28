@@ -23,10 +23,12 @@ body {
     text-align: center;
   }
 
-  td {
+  table, th, td {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid black;
+    border-radius: 10px;
   }
 
 .center {
@@ -34,7 +36,7 @@ body {
  
 }
   
-        ul, ol, li {
+ul, ol, li {
 justify-content: center;
 list-style-position: inside;
         }
