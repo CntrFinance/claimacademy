@@ -120,22 +120,18 @@ namespace Week1examples
 
             Jibreel();
             //public Student(string skinColor, string firstName, double height, string lastName, string gender, string size);
-            Student sBody = new Student("white", "Charles", 63.4D, "Whiteracker", "Male","Medium");
+            Student sBody = new Student("white", "Charles", 63.4D, "Whiteracker", "Male","Medium");  
             sBody.StudentInfo();
 
             //public Student(string skinColor, string firstName, double height, string lastName, string gender);
            
 
-            Console.WriteLine();
+            Console.WriteLine("Hello World");
 
             Console.WriteLine();
             Console.ReadLine();
 
             Console.WriteLine();
-
-           
-
-
 
         }
         
